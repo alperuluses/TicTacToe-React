@@ -3,8 +3,7 @@ import Box from "./Box";
 import Popup from "./Popup";
 const Boxes = () => {
   const Game = {
-    player1: false, // X
-    player2: true, // O
+    firstBooleanMove :false,
     firstMove: "X",
     rowSize: 3,
     columnSize: 3,
@@ -16,7 +15,7 @@ const Boxes = () => {
     ],
   };
 
-  const [currentPosition, setCurrentPosition] = useState(Game.player1);
+  const [currentPosition, setCurrentPosition] = useState(Game.firstBooleanMove);
   const [currentLetter, setCurrentLetter] = useState("X");
   const [currentBoxes, setCurrentBoxes] = useState(Game.gameMatrix);
   const [attemptCount, setAttemptCount] = useState(0);
@@ -82,14 +81,16 @@ const Boxes = () => {
   };
 
   const boxClickHandler = (e) => {
-    setAttemptCount(attemptCount + 1);
-    const currentElement = e.target;
-    const currentParent = e.target.parentElement;
+    
+    const currentElement = e.target;  // Get clicked element
+    const currentParent = e.target.parentElement; // Get clicked element parent
     const index = Array.from(currentParent.children).indexOf(currentElement);
     const currentRow = getCurrentRow(index, Game.rowSize);
     const currentIndex = getCurrentIndex(index);
-    currentBoxes[currentRow - 1][currentIndex] =
-      currentBoxes[currentRow - 1][currentIndex] ?? currentLetter;
+    if(!currentBoxes[currentRow - 1][currentIndex]){
+      setAttemptCount(attemptCount + 1)
+      currentBoxes[currentRow - 1][currentIndex] = currentLetter;
+    }
     win(currentBoxes);
     setCurrentPosition(!currentPosition);
     setCurrentLetter(currentLetter == "X" ? "O" : "X");
