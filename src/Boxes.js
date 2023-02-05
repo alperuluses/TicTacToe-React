@@ -50,12 +50,12 @@ const Boxes = () => {
 
     let flat = currentBoxes.flat();
     flat.forEach((v, i) => {
-      if (v == "X") arrayX.push(i);
-      if (v == "O") arrayO.push(i);
+      if (v === "X") arrayX.push(i);
+      if (v === "O") arrayO.push(i);
     });
     winnable.forEach((v, i) => {
       let isWinX = v.every((v, i, array) => {
-        return currentBoxes && flat[v] == "X";
+        return currentBoxes && flat[v] === "X";
       });
 
       if (isWinX) setWinnerLetter("X KAZANDI");
@@ -69,7 +69,7 @@ const Boxes = () => {
 
     winnable.forEach((v, i) => {
       let isWinO = v.every((v) => {
-        return currentBoxes && flat[v] == "O";
+        return currentBoxes && flat[v] === "O";
       });
 
       if (isWinO) setWinnerLetter("O KAZANDI");
@@ -91,7 +91,7 @@ const Boxes = () => {
       currentBoxes[currentRow - 1][currentIndex] ?? currentLetter;
     win(currentBoxes);
     setCurrentPosition(!currentPosition);
-    setCurrentLetter(currentLetter == "X" ? "O" : "X");
+    setCurrentLetter(currentLetter === "X" ? "O" : "X");
   };
 
   const restartGame = () => {
