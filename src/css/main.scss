@@ -41,14 +41,11 @@ body {
     justify-content: space-between;
     width: 500px;
     margin-top: 50px;
-<<<<<<< HEAD
 
     @media screen and (max-width: $small-screen) {
       width: 350px;
       justify-content: center;
     }
-=======
->>>>>>> 0498022 (TicTacToe)
   }
   .boxes {
     width: 500px;
@@ -85,25 +82,19 @@ body {
         position: absolute;
         right: 0;
       }
-<<<<<<< HEAD
 
       @media screen and (max-width: $small-screen) {
         font-size: 7vw;
       }
-=======
->>>>>>> 0498022 (TicTacToe)
     }
     .gameOver {
       background-color: rgba(119, 50, 111, 0.7) !important;
     }
-<<<<<<< HEAD
 
     @media screen and (max-width: $small-screen) {
       width: 350px;
       height: 350px;
     }
-=======
->>>>>>> 0498022 (TicTacToe)
   }
 }
 
@@ -164,12 +155,9 @@ body {
 
   .text {
     font-size: 30px;
-<<<<<<< HEAD
 
     @media screen and (max-width: $small-screen) {
       font-size: 20px;
     }
-=======
->>>>>>> 0498022 (TicTacToe)
   }
 }
