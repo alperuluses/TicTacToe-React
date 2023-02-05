@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Box from "./Box";
 import Popup from "./Popup";
 const Boxes = () => {
