@@ -23,6 +23,7 @@ const Boxes = () => {
   const [winnerLetter, setWinnerLetter] = useState(null);
   const [gameOver, setGameOver] = useState(null);
 
+  
   const getCurrentRow = (index) => {
     const currentRow = (3 - (index % 3) + index) / 3;
     return currentRow;
