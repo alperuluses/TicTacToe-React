@@ -39,23 +39,14 @@ const Boxes = () => {
       let isWinO = v.every((v) => {
         return currentBoxes && flat[v] === GAME_STATE.player2.textEquivalent;
       });
-      if (v.every((v, i) => arrayX.includes(v))) {
-        setGameOver(v);
-      }
-      if (v.every((v, i) => arrayO.includes(v))) {
-        setGameOver(v);
-      }
-      if (isWinX) {
-        setWinnerLetter(GAME_STATE.WINNER_TEXT_X);
-        return false;
-      } else if (isWinO) {
-        setWinnerLetter(GAME_STATE.WINNER_TEXT_O);
-        return false;
-      } else if (!flat.includes(null)) {
-        setWinnerLetter(GAME_STATE.DRAW_TEXT);
-        return false;
-      }
 
+      if (v.every((v) => arrayX.includes(v))) setGameOver(v);
+      if (v.every((v) => arrayO.includes(v))) setGameOver(v);
+
+      if (isWinX) {setWinnerLetter(GAME_STATE.WINNER_TEXT_X); return;}
+      if (isWinO) {setWinnerLetter(GAME_STATE.WINNER_TEXT_O);return; }
+      if (!flat.includes(null)) {setWinnerLetter(GAME_STATE.DRAW_TEXT);return;}
+      
       return true;
     });
   };
