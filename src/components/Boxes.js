@@ -28,8 +28,8 @@ const Boxes = () => {
 
     const flat = currentBoxes.flat();
     flat.forEach((v, i) => {
-      if (v === "X") arrayX.push(i);
-      if (v === "O") arrayO.push(i);
+      if (v === GAME_STATE.player1.textEquivalent) arrayX.push(i);
+      if (v === GAME_STATE.player2.textEquivalent) arrayO.push(i);
     });
     GAME_STATE.winnable.every((v) => {
       let isWinX = v.every((v) => {
