@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "./Box";
 import Popup from "./Popup";
 const Boxes = () => {
@@ -53,31 +53,33 @@ const Boxes = () => {
       if (v === "X") arrayX.push(i);
       if (v === "O") arrayO.push(i);
     });
-    winnable.forEach((v, i) => {
+    winnable.every((v, i) => {
       let isWinX = v.every((v, i, array) => {
         return currentBoxes && flat[v] === "X";
       });
 
-      if (isWinX) setWinnerLetter("X KAZANDI");
+      let isWinO = v.every((v) => {
+        return currentBoxes && flat[v] === "O";
+      });
       if (v.every((v, i) => arrayX.includes(v))) {
         setGameOver(v);
       }
       if (v.every((v, i) => arrayO.includes(v))) {
         setGameOver(v);
       }
+      if (isWinX) {
+        setWinnerLetter("X KAZANDI");
+        return false;
+      } else if (isWinO) {
+        setWinnerLetter("O KAZANDI");
+        return false;
+      } else if (!flat.includes(null)) {
+        setWinnerLetter("BERABERE");
+        return false;
+      }
+
+      return true;
     });
-
-    winnable.forEach((v, i) => {
-      let isWinO = v.every((v) => {
-        return currentBoxes && flat[v] === "O";
-      });
-
-      if (isWinO) setWinnerLetter("O KAZANDI");
-    });
-
-    if (!flat.includes(null) && !winnerLetter) {
-      setWinnerLetter("BERABERE");
-    }
   };
 
   const boxClickHandler = (e) => {
@@ -87,12 +89,12 @@ const Boxes = () => {
     const currentRow = getCurrentRow(index, Game.rowSize);
     const currentIndex = getCurrentIndex(index);
     if (!currentBoxes[currentRow - 1][currentIndex]) {
+      setCurrentPosition(!currentPosition);
+      setCurrentLetter(currentLetter === "X" ? "O" : "X");
       setAttemptCount(attemptCount + 1);
       currentBoxes[currentRow - 1][currentIndex] = currentLetter;
     }
     win(currentBoxes);
-    setCurrentPosition(!currentPosition);
-    setCurrentLetter(currentLetter === "X" ? "O" : "X");
   };
 
   const restartGame = () => {
@@ -103,6 +105,9 @@ const Boxes = () => {
     setGameOver(null);
   };
 
+  useEffect(() => {
+    return console.log(winnerLetter);
+  }, [winnerLetter]);
   return (
     <div>
       <div className="container">
