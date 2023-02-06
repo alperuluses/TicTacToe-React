@@ -81,14 +81,15 @@ const Boxes = () => {
   };
 
   const boxClickHandler = (e) => {
-    setAttemptCount(attemptCount + 1);
     const currentElement = e.target;
     const currentParent = e.target.parentElement;
     const index = Array.from(currentParent.children).indexOf(currentElement);
     const currentRow = getCurrentRow(index, Game.rowSize);
     const currentIndex = getCurrentIndex(index);
-    currentBoxes[currentRow - 1][currentIndex] =
-      currentBoxes[currentRow - 1][currentIndex] ?? currentLetter;
+    if (!currentBoxes[currentRow - 1][currentIndex]) {
+      setAttemptCount(attemptCount + 1);
+      currentBoxes[currentRow - 1][currentIndex] = currentLetter;
+    }
     win(currentBoxes);
     setCurrentPosition(!currentPosition);
     setCurrentLetter(currentLetter === "X" ? "O" : "X");
