@@ -1,5 +1,5 @@
-import Navbar from "./Navbar";
-import Boxes from "./Boxes";
+import Navbar from "./components/Navbar";
+import Boxes from "./components/Boxes";
 function App() {
   return (
     <div className="App">
